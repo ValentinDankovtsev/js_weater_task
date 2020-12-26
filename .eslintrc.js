@@ -21,6 +21,9 @@ module.exports = {
     "no-alert": "off",
     "no-shadow": "off",
     "consistent-return": "off",
+    "import/prefer-default-export": "off",
+    "import/newline-after-import": "off",
+
   },
   plugins: ["jest"],
 };

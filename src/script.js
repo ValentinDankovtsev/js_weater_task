@@ -1,12 +1,14 @@
-async function getData() {
-    return fetch(`https://get.geojs.io/v1/ip/geo.json`)
-        .then(response => response.json()).then(data => data.city);
+async function getCityName() {
+    try {
+        const result = await fetch(`https://get.geojs.io/v1/ip/geo.json`)
+            .then(response => response.json()).then(data => data.city);
+        return result;
+        
+    } catch (err) {
+        alert('ошибка');
+    }
 }
 
-async function getCityName() {
-    const result = await getData();
-    return result;
-}
 
 async function drawCity(el, result) {
     el.innerHTML = await result;
@@ -47,16 +49,19 @@ async function drawIcon(el, result) {
 
 drawIcon(document.querySelector("#container3"), getUrlIcon());
 
-async function createUrlImg() {
-    const city = await getCityName();
-    const imgUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${city}&zoom=10&size=400x400&markers=size:mid%7Ccolor:green%7Clabel:M%7C${city}&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk`;
+ function createUrlImg(result) {
+    // const city =  getCityName();
+    const city = result
+    const imgUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${city}&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk`;
     return imgUrl;
 }
 
 function drawImg() {
-    document.querySelector('img').src = createUrlImg(); //  отрисовываем карту google static api
+    document.querySelector('img').src = createUrlImg(); 
 }
-drawImg();
+drawImg() ;
+
+
 
 (async function () {
     const formEl = document.querySelector("form");
@@ -90,7 +95,7 @@ drawImg();
     }
 
     function drawList(el, items) {
-        if (el.querySelectorAll("li").length > 9) { //  список выводится до 10 элементов li, удаляется первый элемент при добавлении сверх. названия городов в списке не повоторяются
+        if ([el.querySelectorAll("li")].length > 9) { //  список выводится до 10 элементов li, удаляется первый элемент при добавлении сверх. названия городов в списке не повоторяются
             el.removeChild(el.querySelectorAll("li")[0]);
         }
         el.innerHTML = `<ol>${items.map((el) => `<li>${el}</li>`).join("")}</ol>`;
@@ -120,8 +125,11 @@ drawImg();
 
         // сохраняем список
         saveList(items);
+        // createUrlImg(cityName);
+        // document.querySelector('img').src = createUrlImg(); 
 
     });
+    
     liEl.addEventListener("click", showWeather);
     //   повесить обработчик на список,чтобы показывала темперутуру
     //    и google static map соответствующего города

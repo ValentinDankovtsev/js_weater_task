@@ -14,29 +14,23 @@ async function drawCity(el, result) {
     el.innerHTML = await result;
 }
 
-drawCity(document.querySelector("#container"), getCityName());
 
-async function getWeather() {
-    const city = await getCityName();
+async function getWeather(result) {
     const weather = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=d26008b5ef954ff8cd8cdefb3d851e73`).then(response => response.json());
+        `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${result}&appid=d26008b5ef954ff8cd8cdefb3d851e73`).then(response => response.json());
     return weather.main.temp_min;
 }
 async function drawWeather(el, result) {
     el.innerHTML = await result;
 }
-
-drawWeather(document.querySelector("#container2"), getWeather());
-
-async function getIconWeatherFromApi() {
-    const city = await getCityName();
+async function getIconWeatherFromApi(city) {
     const weatherIconId = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=d26008b5ef954ff8cd8cdefb3d851e73`).then(response => response.json());
     return weatherIconId.weather[0].icon;
 }
 
-async function getUrlIcon() {
-    const iconName = await getIconWeatherFromApi();
+async function getUrlIcon(city) {
+    const iconName = await getIconWeatherFromApi(city);
     const icon = `<img src="https://openweathermap.org/img/wn/${iconName}@2x.png">`;
 
     return icon;
@@ -46,8 +40,13 @@ async function drawIcon(el, result) {
     el.innerHTML = await result;
 }
 
+(async function () {
+    const city = await getCityName()
+    drawWeather(document.querySelector("#container2"), getWeather(city))
+    drawIcon(document.querySelector("#container3"), getUrlIcon(city));
+    drawCity(document.querySelector("#container"), city);
+}) ();
 
-drawIcon(document.querySelector("#container3"), getUrlIcon());
 
  function createUrlImg(result) {
     // const city =  getCityName();

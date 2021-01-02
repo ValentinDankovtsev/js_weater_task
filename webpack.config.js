@@ -1,8 +1,9 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: './src/script.js',
+  entry: {
+    index:['babel-polyfill','./main.js']},
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'index_bundle.js'
@@ -26,5 +27,8 @@ module.exports = {
     compress: true,
     port: 9000
 },
-  plugins: [new HtmlWebpackPlugin()]
+  plugins: [new HtmlWebpackPlugin({
+    template: 'index.html'
+  })]
+
 };

@@ -7,8 +7,10 @@ import {
     drawIcon,
 } from "./src/weather";
 import {
-    drawImg,
-    createUrlImg
+    createUrlImg,
+    drawMap,
+
+    // createUrlImg
 } from "./src/map"
 
 (async function () {
@@ -16,9 +18,10 @@ import {
     drawWeather(document.querySelector("#container2"), getWeather(city))
     drawIcon(document.querySelector("#container3"), getUrlIcon(city));
     drawCity(document.querySelector("#container"), city);
+    drawMap(document.querySelector(".img"), document.querySelector(".img").src=createUrlImg());
 })();
 
-drawImg();
+// drawImg();
 
 (async function formwithWeatherInfoStorage() {
     const formEl = document.querySelector("form");
@@ -70,14 +73,11 @@ drawImg();
         const weather = await getWeatherForm(cityName);
         showWeather(weatherInfoEl, weather);
 
-        const urlImg = createUrlImg(cityName);
-
-        function drawImg() {
-            document.querySelector('.img').src = urlImg;
-        }
-        drawImg()
+        const map = createUrlImg(cityName);
+        drawMap(document.querySelector(".img"),document.querySelector(".img").src= map)
 
         items.push(cityName);
+
 
         while (items.length > 10) {
             items.shift();
@@ -87,13 +87,20 @@ drawImg();
 
         // сохраняем список
         saveList(items);
-
     });
 
     const ol = document.querySelector("ol");
+
     ol.addEventListener("click", async (event) => {
-        if (event.target.tagName === "LI") {
-        alert('показать температуру и город из списка') // для проверки
+        event.preventDefault();
+        if (event.target.matches("li")) {
+            const city = event.target.innerText;
+            const weather = await getWeatherForm(city)
+            const map = createUrlImg(city);
+            if (weather) {
+                showWeather(weatherInfoEl, weather)
+                drawMap(document.querySelector(".img"),document.querySelector(".img").src= map)
+            }
         }
     });
 })();

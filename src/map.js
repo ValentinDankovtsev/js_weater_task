@@ -5,7 +5,8 @@
     return imgUrl;
 }
 
-export function drawImg() {
-    document.querySelector('.img').src = createUrlImg(); 
-}
  ;
+ export async function drawMap(el, result) {
+    el.innerHTML = await result;
+}
+

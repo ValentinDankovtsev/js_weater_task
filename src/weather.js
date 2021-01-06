@@ -10,7 +10,7 @@ export async function getCityName() {
 }
 
 export async function drawCity(el, result) {
-    el.innerHTML = await result;
+    el.innerHTML = `Your City: ${await result}`;
 }
 
 export async function getWeather(result) {
@@ -20,7 +20,7 @@ export async function getWeather(result) {
 }
 
 export async function drawWeather(el, result) {
-    el.innerHTML = await result;
+    el.innerHTML = `Temperature °C: ${await result}`;
 }
 
 async function getIconWeatherFromApi(city) {

@@ -9,19 +9,17 @@ import {
 import {
     createUrlImg,
     drawMap,
-
-    // createUrlImg
 } from "./src/map"
+
+// import "regenerator-runtime/runtime";
 
 (async function () {
     const city = await getCityName()
     drawWeather(document.querySelector("#container2"), getWeather(city))
     drawIcon(document.querySelector("#container3"), getUrlIcon(city));
     drawCity(document.querySelector("#container"), city);
-    drawMap(document.querySelector(".img"), document.querySelector(".img").src=createUrlImg());
+    drawMap(document.querySelector(".img"), document.querySelector(".img").src = createUrlImg());
 })();
-
-// drawImg();
 
 (async function formwithWeatherInfoStorage() {
     const formEl = document.querySelector("form");
@@ -30,7 +28,7 @@ import {
 
 
     function showWeather(el, weatherInfo) {
-        el.innerHTML = JSON.stringify(weatherInfo);
+        el.innerHTML = `Temperature °C in the selected: ${JSON.stringify(weatherInfo)}`;
     }
 
     async function getWeatherForm(cityName) {
@@ -41,12 +39,15 @@ import {
     }
 
     async function readList() {
+
         const list = JSON.parse(localStorage.getItem("items"));
+
         if (list === null) {
             return [];
         }
         return list;
     }
+
 
     function saveList(items) {
         localStorage.setItem("items", JSON.stringify(items));
@@ -57,8 +58,21 @@ import {
     }
 
     const items = await readList();
-
+ 
     drawList(listEl, items);
+
+    document.addEventListener("click", async (event) => {
+
+        if (event.target.matches("li")) {
+            const city = event.target.innerText;
+            const weather = await getWeatherForm(city)
+            const map = createUrlImg(city);
+            if (weather) {
+                showWeather(weatherInfoEl, weather)
+                drawMap(document.querySelector(".img"), document.querySelector(".img").src = map)
+            }
+        }
+    });
 
     formEl.addEventListener("submit", async (ev) => {
         // чтобы не перезагружать страницу
@@ -74,33 +88,20 @@ import {
         showWeather(weatherInfoEl, weather);
 
         const map = createUrlImg(cityName);
-        drawMap(document.querySelector(".img"),document.querySelector(".img").src= map)
-
-        items.push(cityName);
+        drawMap(document.querySelector(".img"), document.querySelector(".img").src = map)
 
 
-        while (items.length > 10) {
-            items.shift();
+        if (!items.includes(cityName)) {
+            items.push(cityName)
         }
 
+        while (items.length > 10) {
+            items.shift()
+        }
+        // items.filter((item, index) => items.indexOf(item) !==index)
         drawList(listEl, items);
 
         // сохраняем список
         saveList(items);
-    });
-
-    const ol = document.querySelector("ol");
-
-    ol.addEventListener("click", async (event) => {
-        event.preventDefault();
-        if (event.target.matches("li")) {
-            const city = event.target.innerText;
-            const weather = await getWeatherForm(city)
-            const map = createUrlImg(city);
-            if (weather) {
-                showWeather(weatherInfoEl, weather)
-                drawMap(document.querySelector(".img"),document.querySelector(".img").src= map)
-            }
-        }
     });
 })();

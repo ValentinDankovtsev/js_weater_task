@@ -1,6 +1,6 @@
-<h2>This repository about app whith weather.</h2>
+<h2>This repository about app whith weather.</h2><p>&#9728;</p>
 task from IT school Otus https://otus.ru/.
-<p>&#9728;</p>
+
 
 Pr was writen by JS. 
 <code>

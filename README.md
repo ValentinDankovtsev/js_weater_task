@@ -1,4 +1,4 @@
-This repository about app whith weather.
+<h1>This repository about app whith weather.</h1>
 task from IT school Otus https://otus.ru/.
 
 Pr was writen by JS. 

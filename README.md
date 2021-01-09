@@ -3,9 +3,9 @@ task from IT school Otus https://otus.ru/.
 
 Pr was writen by JS. 
 <code>
-        function showWeather(el, weatherInfo) {
-el.innerHTML = `Temperature °C in the selected: ${JSON.stringify(weatherInfo)}`;
-        }
+        function showWeather(el, weatherInfo) {<Br>
+el.innerHTML = `Temperature °C in the selected: ${JSON.stringify(weatherInfo)}`;<Br>
+        }<Br>
 </code>
     
 User has the chance to see the weather depending on his location. Choosing another city User also find the weather.

@@ -39,3 +39,5 @@ export async function getUrlIcon(city) {
 export async function drawIcon(el, result) {
     el.innerHTML = await result;
 }
+
+

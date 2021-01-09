@@ -13,7 +13,7 @@ import {
 
 // import "regenerator-runtime/runtime";
 
-(async function () {
+(async function bundle () {
     const city = await getCityName()
     drawWeather(document.querySelector("#container2"), getWeather(city))
     drawIcon(document.querySelector("#container3"), getUrlIcon(city));

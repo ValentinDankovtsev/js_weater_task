@@ -23,6 +23,7 @@ module.exports = {
     "consistent-return": "off",
     "import/prefer-default-export": "off",
     "import/newline-after-import": "off",
+    "no-param-reassign": "off",
 
   },
   plugins: ["jest"],

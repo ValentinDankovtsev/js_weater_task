@@ -1,9 +1,13 @@
 import {
   getWeather,
   getCityName,
-  drawCity
+  drawCity,
+  getIconWeatherFromApi,
+  getUrlIcon,
+  drawIcon
 } from "./weather";
 import * as testConstants from "./constants";
+
 
 describe("getWeather", () => {
   it("return weather", async () => {
@@ -37,6 +41,31 @@ describe("getCityName", () => {
   });
 });
 
+describe("getIconWeatherFromApi", () => {
+  it("return getIconWeatherFromApi", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(testConstants.testWeather)
+      })
+    );
+    const icon = await getIconWeatherFromApi();
+    expect(icon).toEqual("04d")
+  });
+});
+
+
+describe("getUrlIcon", () => {
+  it("return url getUrlIcon", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(testConstants.testWeather)
+      })
+    );
+    const icon = await getUrlIcon();
+    expect(icon).toEqual("<img src=\"https://openweathermap.org/img/wn/04d@2x.png\">")
+  });
+});
+
 describe("DrawCity", () => {
 global.window.document.body.innerHTML = `
 <div id="container"></div>
@@ -55,11 +84,20 @@ global.window.document.body.innerHTML = `
 <div id="list"></div>
 <img class="img">`
 const div = document.querySelector("#container");
+let imgIcon = document.querySelector("#container3").getElementsByTagName('img');
+ it('drawCity div is container', async ()=> {
+  expect(div).not.toBe(null)
+ })
+ it('drawCity div is container', async ()=> {
+   
+   jest.fn(div.innerHTML='Abaza')
+   drawCity();
+  expect(div.innerHTML).toEqual(testConstants.testCity.city)
+ })
+ it('drawIcon div is container', async ()=> {
 
-it('Draw City test', async () => {
-expect(div).not.toBe(null);
-await drawCity();
-drawCity.mockImplementation(()=> {div.innerHTML="novosibirsk"})
-expect('#container'.innerHTML()).toEqual();
-});
+  jest.fn(imgIcon = "https://openweathermap.org/img/wn/04d@2x.png")
+ drawIcon()
+  expect(imgIcon).toEqual("https://openweathermap.org/img/wn/04d@2x.png")
+ })
 });

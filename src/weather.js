@@ -23,7 +23,7 @@ export async function drawWeather(el, result) {
     el.innerHTML = `Temperature °C: ${await result}`;
 }
 
-async function getIconWeatherFromApi(city) {
+export async function getIconWeatherFromApi(city) {
     const weatherIconId = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=d26008b5ef954ff8cd8cdefb3d851e73`).then(response => response.json());
     return weatherIconId.weather[0].icon;

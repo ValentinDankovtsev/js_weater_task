@@ -59,7 +59,7 @@ import {
 
     const items = await readList();
  
-    drawList(listEl, items);
+     drawList(listEl, items);
 
     document.addEventListener("click", async (event) => {
 

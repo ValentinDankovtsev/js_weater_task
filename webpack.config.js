@@ -1,12 +1,13 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const ESLintPlugin = require('eslint-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const ESLintPlugin = require("eslint-webpack-plugin");
 module.exports = {
   entry: {
-    index:['babel-polyfill','./main.js']},
+    index: ["babel-polyfill", "./main.js"],
+  },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'index_bundle.js'
+    path: path.resolve(__dirname, "./dist"),
+    filename: "index_bundle.js",
   },
   module: {
     rules: [
@@ -14,20 +15,23 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+    ],
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, "dist"),
     compress: true,
-    port: 9000
-},
-  plugins: [new HtmlWebpackPlugin({
-    template: 'index.html'
-  }), new ESLintPlugin()],
+    port: 9000,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "index.html",
+    }),
+    new ESLintPlugin(),
+  ],
 };

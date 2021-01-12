@@ -4,12 +4,10 @@ module.exports = {
     es2021: true,
     "jest/globals": true,
   },
-  extends: [
-    'airbnb-base',"eslint-config-prettier"
-  ],
+  extends: ["airbnb-base", "eslint-config-prettier"],
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: "module",
   },
   rules: {
     "no-plusplus": "off",
@@ -24,7 +22,6 @@ module.exports = {
     "import/prefer-default-export": "off",
     "import/newline-after-import": "off",
     "no-param-reassign": "off",
-
   },
   plugins: ["jest"],
 };

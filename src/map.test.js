@@ -9,7 +9,7 @@ jest.mock('./map')
 
 describe("createUrlImg", () => {
   it("createUrlImg", () => {
-    const mock = mockedUrl.createUrlImg.mockImplementation(() => `https://maps.googleapis.com/maps/api/staticmap?center=Novosibirsk&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk`);
+    const mock = mockedUrl.createUrlImg.mockImplementation(() => return `https://maps.googleapis.com/maps/api/staticmap?center=Novosibirsk&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk`);
     const UrlUmg = createUrlImg();
     expect(UrlUmg).toEqual("https://maps.googleapis.com/maps/api/staticmap?center=Novosibirsk&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk")
     expect(mock).toHaveBeenCalled()

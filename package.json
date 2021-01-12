@@ -39,6 +39,18 @@
     "start": "webpack serve --mode development",
     "build": "webpack --mode production"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --cache --fix"
+    ],
+    "*.{css,md,yml,html}": "prettier --write"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://ValentinDankovtsev@github.com/ValentinDankovtsev/js_weater_task.git"
@@ -49,4 +61,7 @@
     "url": "https://github.com/ValentinDankovtsev/js_weater_task/issues"
   },
   "homepage": "https://github.com/ValentinDankovtsev/js_weater_task#readme"
+
+
+  
 }

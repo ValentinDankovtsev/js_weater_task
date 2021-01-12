@@ -13,7 +13,7 @@ import {
 
 // import "regenerator-runtime/runtime";
 
-(async function bundle () {
+(async function bundle() {
     const city = await getCityName()
     drawWeather(document.querySelector("#container2"), getWeather(city))
     drawIcon(document.querySelector("#container3"), getUrlIcon(city));
@@ -58,8 +58,8 @@ import {
     }
 
     const items = await readList();
- 
-     drawList(listEl, items);
+
+    drawList(listEl, items);
 
     document.addEventListener("click", async (event) => {
 

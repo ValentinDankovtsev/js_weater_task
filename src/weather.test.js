@@ -67,7 +67,7 @@ describe("getUrlIcon", () => {
 });
 
 describe("DrawCity", () => {
-global.window.document.body.innerHTML = `
+  global.window.document.body.innerHTML = `
 <div id="container"></div>
 <div id="container2"></div>
 <div id="container3"></div>
@@ -83,21 +83,21 @@ global.window.document.body.innerHTML = `
 <pre id="weatherInfo"></pre>
 <div id="list"></div>
 <img class="img">`
-const div = document.querySelector("#container");
-let imgIcon = document.querySelector("#container3").getElementsByTagName('img');
- it('drawCity div is container', async ()=> {
-  expect(div).not.toBe(null)
- })
- it('drawCity div is container', async ()=> {
-   
-   jest.fn(div.innerHTML='Abaza')
-   drawCity();
-  expect(div.innerHTML).toEqual(testConstants.testCity.city)
- })
- it('drawIcon div is container', async ()=> {
+  const div = document.querySelector("#container");
+  let imgIcon = document.querySelector("#container3").getElementsByTagName('img');
+  it('drawCity div is container', async () => {
+    expect(div).not.toBe(null)
+  })
+  it('drawCity div is container', async () => {
 
-  jest.fn(imgIcon = "https://openweathermap.org/img/wn/04d@2x.png")
- drawIcon()
-  expect(imgIcon).toEqual("https://openweathermap.org/img/wn/04d@2x.png")
- })
+    jest.fn(div.innerHTML = 'Abaza')
+    drawCity();
+    expect(div.innerHTML).toEqual(testConstants.testCity.city)
+  })
+  it('drawIcon div is container', async () => {
+
+    jest.fn(imgIcon = "https://openweathermap.org/img/wn/04d@2x.png")
+    drawIcon()
+    expect(imgIcon).toEqual("https://openweathermap.org/img/wn/04d@2x.png")
+  })
 });

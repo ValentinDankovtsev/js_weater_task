@@ -5,6 +5,7 @@ import {
   getIconWeatherFromApi,
   getUrlIcon,
   drawIcon,
+  drawWeather,
 } from "./weather";
 import * as testConstants from "./constants";
 
@@ -81,20 +82,29 @@ describe("DrawCity", () => {
 <div id="list"></div>
 <img class="img">`;
   const div = document.querySelector("#container");
-  let imgIcon = document
+  const div2 = document.querySelector("#container2");
+  const imgIcon = document
     .querySelector("#container3")
     .getElementsByTagName("img");
-  it("drawCity div is container", async () => {
+
+  it("drawCity", async () => {
+    await drawCity(div, testConstants.testCity.city);
     expect(div).not.toBe(null);
+    expect(div.innerHTML).toEqual("Your City: Abaza");
   });
-  it("drawCity div is container", async () => {
-    jest.fn((div.innerHTML = "Abaza"));
-    drawCity();
-    expect(div.innerHTML).toEqual(testConstants.testCity.city);
+  it("drawIcon", async () => {
+    const result = `https://openweathermap.org/img/wn/04d@2x.png`;
+    await drawIcon(imgIcon, result);
+    expect(imgIcon.src).not.toBe("");
+    expect(imgIcon).not.toBe(null);
+    expect(imgIcon.innerHTML).toEqual(
+      "https://openweathermap.org/img/wn/04d@2x.png"
+    );
   });
-  it("drawIcon div is container", async () => {
-    jest.fn((imgIcon = "https://openweathermap.org/img/wn/04d@2x.png"));
-    drawIcon();
-    expect(imgIcon).toEqual("https://openweathermap.org/img/wn/04d@2x.png");
+  it("drawWeather", async () => {
+    await drawWeather(div2, testConstants.testWeather.main.temp);
+    expect(div2).not.toBe("");
+    expect(div2).not.toBe(null);
+    expect(div2.innerHTML).toEqual("Temperature °C: 2.15");
   });
 });

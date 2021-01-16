@@ -1,3 +1,5 @@
+![PR Sanity Check](https://github.com/ValentinDankovtsev/js_weater_task/workflows/PR%20Sanity%20Check/badge.svg)
+
 <h2>This repository about app whith weather.</h2><p>&#9728;</p>
 task from IT school Otus https://otus.ru/.
 

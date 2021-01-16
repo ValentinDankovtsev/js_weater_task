@@ -8,7 +8,7 @@ import {
 } from "./src/weather";
 import { createUrlImg, drawMap } from "./src/map";
 import { readList, saveList, drawList } from "./src/storage";
-// import './style.css';
+import "./style.css";
 
 (async function bundle() {
   const city = await getCityName();

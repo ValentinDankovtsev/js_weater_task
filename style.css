@@ -1,0 +1,24 @@
+* {
+  text-align: center;
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+}
+.container {
+  font-weight: 900;
+}
+.list {
+  background-color: rgb(221, 195, 177);
+  color: rgb(46, 48, 48);
+  border: 2px solid rgb(75, 75, 82);
+  text-align: center;
+}
+ol {
+  display: flex;
+  font-weight: 600;
+}
+
+ol li {
+  margin-left: auto;
+  margin-right: auto;
+}

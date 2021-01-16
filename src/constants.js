@@ -1,4 +1,4 @@
-export const testList = ["moscow", "new york"];
+export const TEST_CYTY = ["moscow", "new york"];
 
 export const testWeather = {
   coord: {

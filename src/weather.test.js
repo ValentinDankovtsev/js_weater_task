@@ -2,12 +2,14 @@ import {
   getWeather,
   getCityName,
   drawCity,
-  getIconWeatherFromApi,
   getUrlIcon,
   drawIcon,
   drawWeather,
 } from "./weather";
+
+// import {drawList} from "./storage"
 import * as testConstants from "./constants";
+// import * as module from "./weather";
 
 describe("getWeather", () => {
   it("return weather", async () => {
@@ -17,7 +19,7 @@ describe("getWeather", () => {
       })
     );
     const weather = await getWeather();
-    expect(weather).toEqual(2);
+    expect(weather).toEqual({ icon: "04d", tempmin: 2 });
   });
 });
 
@@ -38,18 +40,6 @@ describe("getCityName", () => {
   });
 });
 
-describe("getIconWeatherFromApi", () => {
-  it("return getIconWeatherFromApi", async () => {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(testConstants.testWeather),
-      })
-    );
-    const icon = await getIconWeatherFromApi();
-    expect(icon).toEqual("04d");
-  });
-});
-
 describe("getUrlIcon", () => {
   it("return url getUrlIcon", async () => {
     global.fetch = jest.fn(() =>
@@ -66,9 +56,9 @@ describe("getUrlIcon", () => {
 
 describe("DrawCity", () => {
   global.window.document.body.innerHTML = `
-<div id="container"></div>
-<div id="container2"></div>
-<div id="container3"></div>
+<div class="container"></div>
+<div class="container2"></div>
+<div class="container3"></div>
  <form>
   <input
     id="userInput"
@@ -81,12 +71,13 @@ describe("DrawCity", () => {
 <pre id="weatherInfo"></pre>
 <div id="list"></div>
 <img class="img">`;
-  const div = document.querySelector("#container");
-  const div2 = document.querySelector("#container2");
+  const div = document.querySelector(".container");
+  const div2 = document.querySelector(".container2");
+  // const list = document.querySelector(".list");
   const imgIcon = document
-    .querySelector("#container3")
+    .querySelector(".container3")
     .getElementsByTagName("img");
-
+  // const button = document.querySelector('button')
   it("drawCity", async () => {
     await drawCity(div, testConstants.testCity.city);
     expect(div).not.toBe(null);
@@ -107,4 +98,20 @@ describe("DrawCity", () => {
     expect(div2).not.toBe(null);
     expect(div2.innerHTML).toEqual("Temperature °C: 2.15");
   });
+  // it("drawList", async () => {
+  //   await drawList(list, testConstants.testList[0]);
+  //   expect(list).not.toBe("");
+  //   expect(list).not.toBe(null);
+  //   expect(list.innerHTML).toEqual("");
+  // });
+  // it ("button test", async ()=> {
+  //   expect(button).not.toBe(null)
+  //   require('../main')
+  //   module.getWeather = jest.fn()
+  //   getWeather()
+  //   button.dispatchEvent( new Event ("click"));
+  //   expect(getWeather).toHaveBeenCalled()
+  //   expect(module.getWeather.mock).toBeTruthy();
+
+  // })
 });

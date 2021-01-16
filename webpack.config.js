@@ -34,4 +34,10 @@ module.exports = {
     }),
     new ESLintPlugin(),
   ],
+  // experiments: {
+  //   outputModule: true,
+  //   syncWebAssembly: true,
+  //   topLevelAwait: true,
+  //   asyncWebAssembly: true,
+  // },
 };

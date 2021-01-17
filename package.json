@@ -60,7 +60,9 @@
   "jest": {
     "setupFiles": [
       "jest-localstorage-mock"
-    ]
+    ],
+    "collectCoverage": true,
+    "coverageReporters": ["html", "lcov"]
   },
   "repository": {
     "type": "git",

@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-return-assign */
 import {
   getWeather,
   getCityName,
@@ -7,9 +9,9 @@ import {
   drawWeather,
 } from "./weather";
 
-// import {drawList} from "./storage"
+import { drawList } from "./storage";
 import * as testConstants from "./constants";
-// import * as module from "./weather";
+import * as module from "./storage";
 
 describe("getWeather", () => {
   it("return weather", async () => {
@@ -69,11 +71,11 @@ describe("DrawCity", () => {
   <button>Get weather</button>
 </form>
 <pre id="weatherInfo"></pre>
-<div id="list"></div>
+<div class="list"></div>
 <img class="img">`;
   const div = document.querySelector(".container");
   const div2 = document.querySelector(".container2");
-  // const list = document.querySelector(".list");
+  const list = document.querySelector(".list");
   const imgIcon = document
     .querySelector(".container3")
     .getElementsByTagName("img");
@@ -81,7 +83,7 @@ describe("DrawCity", () => {
   it("drawCity", async () => {
     await drawCity(div, testConstants.testCity.city);
     expect(div).not.toBe(null);
-    expect(div.innerHTML).toEqual("Your City: Abaza");
+    expect(div.innerHTML).toEqual("City: Abaza");
   });
   it("drawIcon", async () => {
     const result = `https://openweathermap.org/img/wn/04d@2x.png`;
@@ -98,12 +100,22 @@ describe("DrawCity", () => {
     expect(div2).not.toBe(null);
     expect(div2.innerHTML).toEqual("Temperature °C: 2.15");
   });
-  // it("drawList", async () => {
-  //   await drawList(list, testConstants.testList[0]);
-  //   expect(list).not.toBe("");
-  //   expect(list).not.toBe(null);
-  //   expect(list.innerHTML).toEqual("");
-  // });
+  it("drawList", async () => {
+    // eslint-disable-next-line global-require
+    // const foo = require('./storage.js');
+    // foo.drawList.mockImplementation(()=> 42);
+    // foo()
+
+    // eslint-disable-next-line global-require
+    require("./storage.js");
+    module.drawList = jest.fn(
+      () => (list.innerHTML = testConstants.TEST_CYTY[0])
+    );
+    await drawList();
+    expect(list).not.toBe("");
+    expect(list.innerHTML).toEqual("moscow");
+    expect(drawList()).toBe("moscow");
+  });
   // it ("button test", async ()=> {
   //   expect(button).not.toBe(null)
   //   require('../main')
@@ -113,5 +125,5 @@ describe("DrawCity", () => {
   //   expect(getWeather).toHaveBeenCalled()
   //   expect(module.getWeather.mock).toBeTruthy();
 
-  // })
+  // // })
 });

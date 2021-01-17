@@ -10,7 +10,7 @@ export async function getCityName() {
 }
 
 export async function drawCity(el, result) {
-  el.innerHTML = `Your City: ${await result}`;
+  el.innerHTML = `City: ${await result}`;
 }
 
 export async function getWeather(result) {

@@ -3,6 +3,7 @@
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 25px;
+  text-transform: capitalize;
 }
 .container {
   font-weight: 900;

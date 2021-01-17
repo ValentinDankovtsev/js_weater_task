@@ -45,7 +45,7 @@ formEl.addEventListener("submit", async (ev) => {
     document.querySelector(".img"),
     (document.querySelector(".img").src = map)
   );
-
+  drawCity(document.querySelector(".container"), cityName);
   if (!items.includes(cityName)) {
     items.push(cityName);
   }
@@ -71,6 +71,7 @@ listEl.addEventListener("click", async (event) => {
         document.querySelector(".img"),
         (document.querySelector(".img").src = map)
       );
+      drawCity(document.querySelector(".container"), city);
     }
   }
 });

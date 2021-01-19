@@ -6,9 +6,7 @@ describe("mock localStorage", () => {
   });
   it("Save localStorage", async () => {
     // eslint-disable-next-line no-proto
-    jest.spyOn(window.localStorage.__proto__, "setItem");
-    // eslint-disable-next-line no-proto
-    window.localStorage.__proto__.setItem = jest.fn();
+    window.localStorage.__proto__.setItem = jest.fn()
     const key = "items";
     const list = [];
     const value = JSON.stringify(list);

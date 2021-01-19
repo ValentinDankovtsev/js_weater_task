@@ -23,7 +23,7 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  // coverageDirectory: undefined,
+  coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -43,13 +43,12 @@ module.exports = {
 
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
-    global: {
-      branches: 60,
-      functions: 60,
-      lines: 60,
-    },
+    "global": {
+    "branches": 60,
+    "functions": 60,
+    "lines": 60,
   },
-
+}
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
 

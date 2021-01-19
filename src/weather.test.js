@@ -8,10 +8,11 @@ import {
   drawIcon,
   drawWeather,
 } from "./weather";
-
+import { drawMap} from "./map";
 import { drawList } from "./storage";
 import * as testConstants from "./constants";
 import * as module from "./storage";
+import * as moduleMap from "./map";
 
 describe("getWeather", () => {
   it("return weather", async () => {
@@ -56,11 +57,11 @@ describe("getUrlIcon", () => {
   });
 });
 
-describe("DrawCity", () => {
+describe("drawFunctions with html", () => {
   global.window.document.body.innerHTML = `
-<div class="container"></div>
-<div class="container2"></div>
-<div class="container3"></div>
+<div class="city"></div>
+<div class="temp"></div>
+<div class="icon"></div>
  <form>
   <input
     id="userInput"
@@ -73,11 +74,11 @@ describe("DrawCity", () => {
 <pre id="weatherInfo"></pre>
 <div class="list"></div>
 <img class="img">`;
-  const div = document.querySelector(".container");
-  const div2 = document.querySelector(".container2");
+  const div = document.querySelector(".city");
+  const div2 = document.querySelector(".temp");
   const list = document.querySelector(".list");
   const imgIcon = document
-    .querySelector(".container3")
+    .querySelector(".icon")
     .getElementsByTagName("img");
   // const button = document.querySelector('button')
   it("drawCity", async () => {
@@ -100,6 +101,14 @@ describe("DrawCity", () => {
     expect(div2).not.toBe(null);
     expect(div2.innerHTML).toEqual("Temperature °C: 2.15");
   });
+  
+it("drawMap", async () => {
+  const img = document.querySelector(".img");
+  moduleMap.drawMap = jest.fn(()=> (img.src =  `https://maps.googleapis.com/maps/api/staticmap?center=Novosibirsk&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk` ))
+  await drawMap();
+  expect(img.src).not.toBe(null);
+  expect(img.src).toBe("https://maps.googleapis.com/maps/api/staticmap?center=Novosibirsk&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk")
+});
   it("drawList", async () => {
     // eslint-disable-next-line global-require
     // const foo = require('./storage.js');

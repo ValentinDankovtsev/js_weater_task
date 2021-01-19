@@ -4,13 +4,11 @@
 ![Run Test Suites](https://github.com/ValentinDankovtsev/js_weater_task/workflows/Run%20Test%20Suites/badge.svg)
 
 <h2>This repository about app whith weather.</h2><p>&#9728;</p>
-task from IT school Otus https://otus.ru/.
+Домашннее задание от школы https://otus.ru/.
 
-Pr was writen by JS.
-
+JS
 <pre><code>function showWeather(el, weatherInfo) {
                 el.innerHTML = `Temperature °C in the selected: ${JSON.stringify(weatherInfo)}`;
         }</code></pre>
 
-User has the chance to see the weather depending on his location. Choosing another city User also find the weather.
-a list of ten cities is saved, which can be view later.
+Пользователь имеет возможность при входе на сайт видеть свое местоположение и погоду. так же пользователь может посмотреть погоду в любом другом городе. сохраняется список из десяти городов в браузере, при клике по любому городу из списка можно увидеть погоду и карту этой местности. в списке элемены не повторяются.

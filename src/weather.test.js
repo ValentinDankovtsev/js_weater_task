@@ -8,7 +8,7 @@ import {
   drawIcon,
   drawWeather,
 } from "./weather";
-import { drawMap} from "./map";
+import { drawMap } from "./map";
 import { drawList } from "./storage";
 import * as testConstants from "./constants";
 import * as module from "./storage";
@@ -77,9 +77,7 @@ describe("drawFunctions with html", () => {
   const div = document.querySelector(".city");
   const div2 = document.querySelector(".temp");
   const list = document.querySelector(".list");
-  const imgIcon = document
-    .querySelector(".icon")
-    .getElementsByTagName("img");
+  const imgIcon = document.querySelector(".icon").getElementsByTagName("img");
   // const button = document.querySelector('button')
   it("drawCity", async () => {
     await drawCity(div, testConstants.testCity.city);
@@ -101,14 +99,19 @@ describe("drawFunctions with html", () => {
     expect(div2).not.toBe(null);
     expect(div2.innerHTML).toEqual("Temperature °C: 2.15");
   });
-  
-it("drawMap", async () => {
-  const img = document.querySelector(".img");
-  moduleMap.drawMap = jest.fn(()=> (img.src =  `https://maps.googleapis.com/maps/api/staticmap?center=Novosibirsk&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk` ))
-  await drawMap();
-  expect(img.src).not.toBe(null);
-  expect(img.src).toBe("https://maps.googleapis.com/maps/api/staticmap?center=Novosibirsk&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk")
-});
+
+  it("drawMap", async () => {
+    const img = document.querySelector(".img");
+    moduleMap.drawMap = jest.fn(
+      () =>
+        (img.src = `https://maps.googleapis.com/maps/api/staticmap?center=Novosibirsk&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk`)
+    );
+    await drawMap();
+    expect(img.src).not.toBe(null);
+    expect(img.src).toBe(
+      "https://maps.googleapis.com/maps/api/staticmap?center=Novosibirsk&size=400x400&key=AIzaSyD-rF50V7U1jPQM_ZlgK_XlCJMtF5_xuSk"
+    );
+  });
   it("drawList", async () => {
     // eslint-disable-next-line global-require
     // const foo = require('./storage.js');

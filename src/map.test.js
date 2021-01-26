@@ -1,4 +1,4 @@
-import { createUrlImg} from "./map";
+import { createUrlImg } from "./map";
 
 import * as mockedUrl from "./map";
 
@@ -21,7 +21,3 @@ describe("createUrlImg", () => {
     );
   });
 });
-  
-
-
-

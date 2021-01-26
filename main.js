@@ -24,6 +24,7 @@ import "./style.css";
 
 const formEl = document.querySelector("form");
 const listEl = document.querySelector(".list");
+const imgEl = document.querySelector(".img");
 
 const items = readList();
 
@@ -67,10 +68,7 @@ listEl.addEventListener("click", async (event) => {
     if (weather) {
       drawIcon(document.querySelector(".icon"), getUrlIcon(city));
       drawWeather(document.querySelector(".temp"), weather.tempmin);
-      drawMap(
-        document.querySelector(".img"),
-        (document.querySelector(".img").src = map)
-      );
+      drawMap(imgEl, (imgEl.src = map));
       drawCity(document.querySelector(".city"), city);
     }
   }

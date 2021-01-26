@@ -7,6 +7,7 @@
 Домашннее задание от школы https://otus.ru/.
 
 JS
+
 <pre><code>function showWeather(el, weatherInfo) {
                 el.innerHTML = `Temperature °C in the selected: ${JSON.stringify(weatherInfo)}`;
         }</code></pre>
